@@ -1,4 +1,4 @@
-package com.bealetech.metrics.reporting;
+package com.basistech.metrics.reporting;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

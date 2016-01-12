@@ -1,7 +1,6 @@
-package com.bealetech.metrics.reporting;
+package com.basistech.metrics.reporting;
 
 import com.codahale.metrics.*;
-import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InOrder;
 
