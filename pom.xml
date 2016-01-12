@@ -10,7 +10,7 @@
 
     <artifactId>metrics-statsd</artifactId>
     <name>Metrics Statsd Support</name>
-    <version>3.0.0</version>
+    <version>3.0.1-SNAPSHOT</version>
     <packaging>bundle</packaging>
     <url>http://github.com/basis-technology-corp/metrics-statsd/</url>
     <description>Statsd reporter for codahale/metrics.</description>
@@ -41,7 +41,7 @@
         <connection>scm:git:git@github.com:basis-technology-corp/metrics-statsd.git</connection>
         <developerConnection>scm:git:git@github.com:basis-technology-corp/metrics-statsd.git</developerConnection>
         <url>http://github.com/basis-technology-corp/metrics-statsd/</url>
-      <tag>metrics-statsd-3.0.0</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <issueManagement>
