@@ -15,6 +15,8 @@ import java.util.regex.Pattern;
  */
 public class Statsd implements Closeable {
 
+    private static final Integer MAX_BUFFER_SIZE = 48 * 1024;
+
     private static final Logger logger = LoggerFactory.getLogger(Statsd.class);
 
     private static final Pattern WHITESPACE = Pattern.compile("[\\s]+");
@@ -75,23 +77,36 @@ public class Statsd implements Closeable {
             writer.write(statTypeStr);
             prependNewline = true;
             writer.flush();
+            if (outputData.size() > MAX_BUFFER_SIZE) {
+                prependNewline = false;
+                flush();
+            }
         } catch (IOException e) {
             logger.error("Error sending to Statsd:", e);
         }
     }
 
-    @Override
-    public void close() throws IOException {
+    public void flush() throws IOException {
         DatagramPacket packet = newPacket(outputData);
 
         packet.setData(outputData.toByteArray());
         datagramSocket.send(packet);
+        outputData.reset();
+    }
 
-        if(datagramSocket != null) {
-            datagramSocket.close();
+    @Override
+    public void close() throws IOException {
+        try {
+            if (outputData.size() > 0 && datagramSocket != null) {
+                flush();
+            }
+        } finally {
+            if (datagramSocket != null) {
+                datagramSocket.close();
+            }
+            this.datagramSocket = null;
+            this.writer = null;
         }
-        this.datagramSocket = null;
-        this.writer = null;
     }
 
     private String sanitizeString(String s) {
