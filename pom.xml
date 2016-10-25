@@ -10,7 +10,7 @@
 
     <artifactId>metrics-statsd</artifactId>
     <name>Metrics Statsd Support</name>
-    <version>3.0.1-SNAPSHOT</version>
+    <version>3.0.1-juvo</version>
     <packaging>bundle</packaging>
     <url>http://github.com/basis-technology-corp/metrics-statsd/</url>
     <description>Statsd reporter for codahale/metrics.</description>
